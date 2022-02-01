@@ -1,5 +1,6 @@
 resource "azurerm_linux_virtual_machine" "vm-aftest" {
-  name          = "vm-aftest"
+  count         = 3
+  name          = "vm-aftest-${count.index + 1}"
   computer_name = "aftest"
 
   resource_group_name = azurerm_resource_group.aftest-experimental.name
@@ -8,14 +9,14 @@ resource "azurerm_linux_virtual_machine" "vm-aftest" {
   size           = "Standard_DS1_v2"
   admin_username = "azureuser"
 
-  network_interface_ids = [azurerm_network_interface.aftest-nic1.id]
+  network_interface_ids = [element(azurerm_network_interface.aftest-nic[*].id, count.index)]
   admin_ssh_key {
     username   = "azureuser"
     public_key = file("${path.module}/files/tf.pub")
   }
 
   os_disk {
-    name                 = "vm-aftest-os-disk"
+    name                 = "vm-aftest-${count.index + 1}-os-disk"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
