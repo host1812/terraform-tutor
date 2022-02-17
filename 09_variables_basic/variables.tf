@@ -27,3 +27,8 @@ variable "vn_name" {
   type        = string
   default     = "aftest"
 }
+
+variable "vn_subnet" {
+  description = "Subnet Name"
+  type        = string
+}

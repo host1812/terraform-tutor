@@ -12,7 +12,7 @@ resource "azurerm_virtual_network" "aftest-vnet" {
 }
 
 resource "azurerm_subnet" "aftest-subnet1" {
-  name                 = "aftest-subnet1"
+  name                 = "vns-${var.vn_subnet}"
   address_prefixes     = ["10.0.1.0/24"]
   resource_group_name  = azurerm_resource_group.rg-aftest.name
   virtual_network_name = azurerm_virtual_network.aftest-vnet.name
