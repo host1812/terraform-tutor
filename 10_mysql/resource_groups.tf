@@ -1,5 +1,4 @@
-resource "azurerm_resource_group" "rg-aftest" {
+resource "azurerm_resource_group" "rg" {
   name     = "rg-${var.rgname}-${var.bu}-${var.env}"
   location = var.rgloc
-  tags     = var.common_tags
 }
