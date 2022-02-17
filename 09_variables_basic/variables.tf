@@ -38,3 +38,30 @@ variable "subnet_addresses" {
   type        = list(string)
   default     = ["10.0.0.0/16", "10.1.0.0/16"]
 }
+
+variable "pip_sku" {
+  description = "Simple Map"
+  type        = map(string)
+  default = {
+    "eastus"  = "Basic"
+    "eastus2" = "Standard"
+    "westus3" = "Standard"
+  }
+}
+
+variable "common_tags" {
+  type = map(string)
+  default = {
+    "env"   = "env"
+    "other" = "other"
+  }
+}
+
+variable "block" {
+  description = "Block?"
+  type        = string
+  validation {
+    condition     = var.block == "yes" || var.block == "no"
+    error_message = "Can be 'yes' or 'no'."
+  }
+}

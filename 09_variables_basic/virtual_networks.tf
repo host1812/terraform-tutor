@@ -32,6 +32,8 @@ resource "azurerm_public_ip" "aftest-pip1" {
 
   allocation_method = "Static"
 
+  sku = lookup(var.pip_sku, azurerm_resource_group.rg-aftest.location, "Basic")
+
   tags = {
     "environment" = "staging"
   }
