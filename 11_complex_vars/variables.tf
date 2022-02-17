@@ -48,3 +48,13 @@ variable "db_auto_growth_enabled" {
   description = "DB Auto Growth Enabled"
   type        = bool
 }
+
+variable "db_thread_detection" {
+  description = "MySQL Thread Detection Policy"
+  type = object({
+    enabled              = bool
+    retention_days       = number
+    email_account_admins = bool
+    email_addresses      = list(string)
+  })
+}
