@@ -1,7 +1,7 @@
 resource "azurerm_virtual_network" "aftest-vnet" {
-  name                = "aftest-vnet"
-  resource_group_name = azurerm_resource_group.aftest-experimental.name
-  location            = azurerm_resource_group.aftest-experimental.location
+  name                = "vn-${var.vn_name}"
+  resource_group_name = azurerm_resource_group.rg-aftest.name
+  location            = azurerm_resource_group.rg-aftest.location
 
   address_space = ["10.0.0.0/16"]
   dns_servers   = ["10.0.0.4", "10.0.0.5"]
@@ -14,21 +14,21 @@ resource "azurerm_virtual_network" "aftest-vnet" {
 resource "azurerm_subnet" "aftest-subnet1" {
   name                 = "aftest-subnet1"
   address_prefixes     = ["10.0.1.0/24"]
-  resource_group_name  = azurerm_resource_group.aftest-experimental.name
+  resource_group_name  = azurerm_resource_group.rg-aftest.name
   virtual_network_name = azurerm_virtual_network.aftest-vnet.name
 }
 
 resource "azurerm_subnet" "aftest-subnet2" {
   name                 = "aftest-subnet2"
   address_prefixes     = ["10.0.2.0/24"]
-  resource_group_name  = azurerm_resource_group.aftest-experimental.name
+  resource_group_name  = azurerm_resource_group.rg-aftest.name
   virtual_network_name = azurerm_virtual_network.aftest-vnet.name
 }
 
 resource "azurerm_public_ip" "aftest-pip1" {
   name                = "aftest-pip1"
-  resource_group_name = azurerm_resource_group.aftest-experimental.name
-  location            = azurerm_resource_group.aftest-experimental.location
+  resource_group_name = azurerm_resource_group.rg-aftest.name
+  location            = azurerm_resource_group.rg-aftest.location
 
   allocation_method = "Static"
 
@@ -39,8 +39,8 @@ resource "azurerm_public_ip" "aftest-pip1" {
 
 resource "azurerm_network_interface" "aftest-nic1" {
   name                = "aftest-nic1"
-  resource_group_name = azurerm_resource_group.aftest-experimental.name
-  location            = azurerm_resource_group.aftest-experimental.location
+  resource_group_name = azurerm_resource_group.rg-aftest.name
+  location            = azurerm_resource_group.rg-aftest.location
 
   ip_configuration {
     name                          = "internal"
