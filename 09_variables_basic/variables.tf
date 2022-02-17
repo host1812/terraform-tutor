@@ -32,3 +32,9 @@ variable "vn_subnet" {
   description = "Subnet Name"
   type        = string
 }
+
+variable "subnet_addresses" {
+  description = "Subnet Addresses"
+  type        = list(string)
+  default     = ["10.0.0.0/16", "10.1.0.0/16"]
+}

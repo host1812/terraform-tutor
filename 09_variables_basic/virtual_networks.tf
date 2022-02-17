@@ -3,7 +3,7 @@ resource "azurerm_virtual_network" "aftest-vnet" {
   resource_group_name = azurerm_resource_group.rg-aftest.name
   location            = azurerm_resource_group.rg-aftest.location
 
-  address_space = ["10.0.0.0/16"]
+  address_space = var.subnet_addresses
   dns_servers   = ["10.0.0.4", "10.0.0.5"]
 
   tags = {
