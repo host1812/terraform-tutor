@@ -26,3 +26,8 @@ variable "vnname" {
   type    = string
   default = "af"
 }
+
+variable "vnets" {
+  type    = set(string)
+  default = ["test", "abra", "cadarbra"]
+}

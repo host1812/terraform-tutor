@@ -1,6 +1,6 @@
 resource "azurerm_virtual_network" "aftest-vnet" {
-  count               = 4
-  name                = "vn-${var.vnname}-${count.index}"
+  for_each            = var.vnets
+  name                = "vn-${var.vnname}-${each.key}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 
